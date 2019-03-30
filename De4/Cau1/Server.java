@@ -39,6 +39,11 @@ public class Server {
         CLIENT_HOST = dataPack.getAddress();
         CLIENT_PORT = dataPack.getPort();
 
-        System.out.println(new String(dataPack.getData(), 0, dataPack.getLength()));
+        String str = new String(dataPack.getData(), 0, dataPack.getLength());
+        str = str.toUpperCase();
+        buffer = new byte[256];
+        buffer = str.getBytes();
+        dataPack = new DatagramPacket(buffer, buffer.length, CLIENT_HOST, CLIENT_PORT);
+        socket.send(dataPack);
     }
 }

@@ -45,5 +45,10 @@ public class Client {
         buffer = ch.getBytes();
         dataPack = new DatagramPacket(buffer, buffer.length, HOST, PORT);
         socket.send(dataPack);
+        
+        buffer = new byte[256];
+        dataPack = new DatagramPacket(buffer, buffer.length);
+        socket.receive(dataPack);
+        System.out.println(ch + ": " + new String(dataPack.getData(), 0, dataPack.getLength()));
     }
 }
